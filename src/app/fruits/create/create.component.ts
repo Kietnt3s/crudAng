@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Fruits } from '../fruits';
@@ -15,6 +16,7 @@ export class CreateComponent implements OnInit {
     name:'',
     quantity:0,
     price:0,
+    dateofmake:Date.now().toString()
   };
   constructor(private fruitService :FruitsService,private route: Router) { }
 

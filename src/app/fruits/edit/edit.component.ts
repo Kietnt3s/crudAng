@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Fruits } from '../fruits';
 import { FruitsService } from '../fruits.service';
 
@@ -14,9 +14,10 @@ export class EditComponent implements OnInit {
     name:'',
     quantity:0,
     price:0,
+    dateofmake:''
   };
 
-  constructor(private fruitService :FruitsService,private route: ActivatedRoute) { }
+  constructor(private fruitService :FruitsService,private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((param)=>{
@@ -29,6 +30,16 @@ export class EditComponent implements OnInit {
   getById(id:number){
     this.fruitService.getById(id).subscribe(data=>{
       this.fruitsForm= data
+    })
+  }
+  update(){
+    this.fruitService.update(this.fruitsForm).subscribe({
+      next:(data)=>{
+        this.router.navigate(["/fruits/home"]);
+      },
+      error:(error)=>{
+        console.log(error);
+      }
     })
   }
 

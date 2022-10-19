@@ -1,6 +1,6 @@
 <div class="container" >
     <div class="row mt-2">
-        <div class="col col-md-4 offset-md-4">
+        <div class="col col-md-4 offset-md-12">
             <a class="btn btn-primary"  routerLink="/fruits/create" >Create Item</a>
         </div>
      </div>
@@ -11,6 +11,9 @@
                 <th scope="col">Name</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
+                <th scope="col">Date Of Make</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +22,41 @@
                 <td >{{item.name}}</td>
                 <td >{{item.quantity}}</td>
                 <td >{{item.price}}</td>
+                <td >{{item.dateofmake}}</td>
                 <td >
-                    <a class="btn btn-primary"  [routerLink]="['fruits/edit', item.id ]"> Edit </a>
+                    <a class="btn btn-primary"  [routerLink]="['/fruits/edit', item.id ]"> Edit </a>
+                </td>
+                <td >
+                    <a class="btn btn-primary"  (click)="openDeleteModal(item.id)"> Del </a>
                 </td>
             </tr>
 
         </tbody>
     </table>
 </div>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         are you sure delete Item?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"(click)="close()" >Close</button>
+          <button type="button" class="btn btn-primary"(click)="delete()" >Del Confim</button>
+        </div>
+      </div>
+    </div>
+  </div>
